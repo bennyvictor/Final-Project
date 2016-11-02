@@ -20,7 +20,7 @@ string toString (int a)
 void printVector (vector<int> v)
 {
 	string output = "{";
-	for (int i; i<v.size(); i++)
+	for (int i=0; i<v.size(); i++)
 	{
 		ostringstream a;
 		a << v[i];
@@ -30,7 +30,7 @@ void printVector (vector<int> v)
 		}
 		else 
 		{
-			output += a.str() + ", ":
+			output += a.str() + ", ";
 		}
 	}
 	cout << output << endl;
@@ -74,26 +74,57 @@ vector<int> primeFactors(vector<int> f)
 	return r;
 }
 
+vector<int> primeFactors (int a)
+{
+	vector<int> r;
+	vector<int> f = Factors(a);
+	for (int i=0; i<f.size(); ++i)
+	{
+		if (isprime(f[i]))
+		{
+			r.push_back(f[i]);
+		}
+	}
+	return r;
+}
 
+string primeFactorize(int num)
+{
+	vector<int> factors = primeFactors(num);
+	if (isprime(num))
+	{
+		return toString(num);
+	}
+	else
+	{
+		return toString (factors[0]) + "*" + primeFactorize(num/factors[0]);
+	}
+}
 
 int main ()
 {
 	cout << "Welcome to Prime Factorizer" << endl;
 	cout << "Keep entering your numbers to prime factorizer" << endl;
-	cout << "or enter -1 to Quit" << endl;
-	
-	int num = 0;
+	cout << "or enter 0 to Quit" << endl;
+	cout << "Reminder" << endl;
+	cout << "the number you enter can't execed ";
+	long long num = -1;
 	
 	cout << "Enter the number :";
 	
-	while (num != -1)
+	while (num != 0)
 	{
-		if (num != 0)
+		if (num > 0)
 		{
 			cout << primeFactorize (num) << endl; 
 		}
 		cout << ">>>";
 		cin >> num;
+		while (num < 0)
+		{
+			cout << "Invalid Input";
+			return 0;
+		}
 	}
 	
 	return 0;
