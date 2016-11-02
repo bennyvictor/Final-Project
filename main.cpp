@@ -107,7 +107,8 @@ int main ()
 	cout << "Keep entering your numbers to prime factorizer" << endl;
 	cout << "or enter 0 to Quit" << endl;
 	cout << "Reminder" << endl;
-	cout << "the number you enter can't execed ";
+	cout << "the number you enter can't execed 1.000.000.000.000.000" << endl;
+	
 	long long num = -1;
 	
 	cout << "Enter the number :";
@@ -118,11 +119,20 @@ int main ()
 		{
 			cout << primeFactorize (num) << endl; 
 		}
+		
 		cout << ">>>";
+		
 		cin >> num;
+		
 		while (num < 0)
 		{
 			cout << "Invalid Input";
+			return 0;
+		}
+		
+		while (num > 1000000000000000)
+		{
+			cout << "The number is too large";
 			return 0;
 		}
 	}
